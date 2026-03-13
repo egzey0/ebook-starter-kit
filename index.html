@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moj Ebook — Tytul Twojego Ebooka</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Opis Twojego ebooka w jednym zdaniu. Zmien to.">
+<meta property="og:title" content="Moj Ebook">
+<meta property="og:description" content="Opis Twojego ebooka.">
+<meta property="og:type" content="product">
+<link rel="canonical" href="https://twojadomena.pl/">
+
+<!-- Fonty -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<!-- Product + FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Moj Ebook",
+  "description": "Opis ebooka.",
+  "offers": {
+    "@type": "Offer",
+    "price": "49",
+    "priceCurrency": "PLN",
+    "availability": "https://schema.org/InStock",
+    "url": "https://twojadomena.pl/"
+  }
+}
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #121212;
+    --white: #ffffff;
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
+    --gray-800: #262626;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+    --radius: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,0.1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.7;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, nav, button, .btn, .price, .badge, .nav-cta, .testimonial-name,
+  .feature-number, .step-number, footer, .price-card .price-sub, .consent-row {
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  }
+
+  a { color: var(--accent); transition: color 0.15s; }
+  a:hover { color: var(--black); }
+
+  img { max-width: 100%; display: block; }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  .container-wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===================== NAV ===================== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { font-weight: 800; font-size: 17px; color: var(--black); text-decoration: none; letter-spacing: -0.3px; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-600); text-decoration: none; }
+  .nav-links a:hover { color: var(--black); }
+  .nav-cta {
+    background: var(--black); color: var(--white) !important;
+    padding: 9px 20px; border-radius: 6px;
+    font-weight: 600; font-size: 14px;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--white); color: var(--black) !important; box-shadow: inset 0 0 0 2px var(--black); }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    padding: 140px 24px 80px;
+    text-align: center;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: var(--green-light); color: var(--green);
+    font-size: 13px; font-weight: 600;
+    padding: 6px 16px; border-radius: 24px;
+    margin-bottom: 24px;
+    letter-spacing: 0.3px;
+  }
+  .hero h1 {
+    font-size: 52px; font-weight: 900; line-height: 1.08;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    max-width: 640px; margin-left: auto; margin-right: auto;
+  }
+  .hero .subtitle {
+    font-size: 21px; color: var(--gray-600);
+    max-width: 520px; margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+  .hero .bullets {
+    list-style: none; display: flex; justify-content: center;
+    gap: 28px; flex-wrap: wrap;
+    margin-bottom: 40px;
+    font-family: 'Inter', sans-serif; font-size: 15px; color: var(--gray-600);
+  }
+  .hero .bullets li { display: flex; align-items: center; gap: 8px; }
+  .hero .bullets .icon { font-size: 20px; }
+
+  .btn {
+    display: inline-block;
+    background: var(--black); color: var(--white);
+    padding: 16px 40px; border-radius: 6px;
+    font-size: 18px; font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.2px;
+    transition: all 0.25s;
+    border: 2px solid var(--black);
+  }
+  .btn:hover { background: var(--white); color: var(--black); }
+  .btn-accent {
+    background: var(--accent); border-color: var(--accent); color: var(--white);
+  }
+  .btn-accent:hover { background: var(--white); color: var(--accent); }
+
+  .hero .cta-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; color: var(--gray-400); margin-top: 14px;
+  }
+
+  /* ===================== PAIN POINTS ===================== */
+  .pain {
+    padding: 80px 24px;
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .pain h2 { font-size: 32px; font-weight: 800; text-align: center; margin-bottom: 16px; letter-spacing: -0.5px; }
+  .pain .lead { text-align: center; color: var(--gray-600); margin-bottom: 48px; max-width: 540px; margin-left: auto; margin-right: auto; }
+  .pain-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px; max-width: 680px; margin: 0 auto;
+  }
+  .pain-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: box-shadow 0.2s;
+  }
+  .pain-card:hover { box-shadow: var(--shadow); }
+  .pain-card .pain-icon { font-size: 28px; margin-bottom: 12px; }
+  .pain-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .pain-card p { font-size: 15px; color: var(--gray-600); line-height: 1.5; font-family: 'Inter', sans-serif; }
+
+  /* ===================== SOLUTION ===================== */
+  .solution {
+    padding: 80px 24px;
+  }
+  .solution h2 { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 16px; letter-spacing: -0.5px; }
+  .solution .lead { text-align: center; color: var(--gray-600); margin-bottom: 48px; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+  .features-list {
+    max-width: 600px; margin: 0 auto;
+    list-style: none;
+  }
+  .features-list li {
+    display: flex; gap: 16px; padding: 20px 0;
+    border-bottom: 1px solid var(--gray-200);
+    align-items: flex-start;
+  }
+  .features-list li:last-child { border-bottom: none; }
+  .feature-number {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: var(--black); color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+  }
+  .feature-text h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .feature-text p { font-size: 16px; color: var(--gray-600); }
+
+  .solution .cta-wrap { text-align: center; margin-top: 48px; }
+
+  /* ===================== SOCIAL PROOF ===================== */
+  .social-proof {
+    padding: 60px 24px;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+  }
+  .social-proof .big-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 72px; font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .social-proof .big-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; color: var(--gray-400);
+    font-weight: 500;
+  }
+
+  /* ===================== TESTIMONIALS ===================== */
+  .testimonials {
+    padding: 80px 24px;
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .testimonials h2 { font-size: 32px; font-weight: 800; text-align: center; margin-bottom: 48px; letter-spacing: -0.5px; }
+  .testimonials-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px; max-width: 720px; margin: 0 auto;
+  }
+  .testimonial-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .testimonial-text { font-size: 16px; color: var(--gray-800); margin-bottom: 16px; line-height: 1.6; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--gray-200);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--gray-600);
+  }
+  .testimonial-name { font-size: 14px; font-weight: 600; }
+  .testimonial-role { font-size: 13px; color: var(--gray-500); font-family: 'Inter', sans-serif; }
+
+  /* ===================== ABOUT AUTHOR ===================== */
+  .author {
+    padding: 80px 24px;
+  }
+  .author-inner {
+    max-width: 600px; margin: 0 auto;
+    display: flex; gap: 28px; align-items: flex-start;
+  }
+  .author-photo {
+    width: 80px; height: 80px; flex-shrink: 0;
+    border-radius: 50%; background: var(--gray-200);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: var(--gray-500);
+  }
+  .author-text h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.3px; }
+  .author-text p { color: var(--gray-600); font-size: 17px; }
+  .author-text p + p { margin-top: 12px; }
+
+  /* ===================== PRICING ===================== */
+  .pricing {
+    padding: 80px 24px;
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    text-align: center;
+  }
+  .pricing h2 { font-size: 36px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .pricing .lead { color: var(--gray-600); margin-bottom: 48px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+  .price-card {
+    max-width: 440px; margin: 0 auto;
+    background: var(--white);
+    border: 2px solid var(--black);
+    border-radius: 16px;
+    padding: 48px 36px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .price-card .popular-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--black); color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 20px; border-radius: 20px;
+  }
+  .price-card .price {
+    font-size: 64px; font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .price-card .price-sub {
+    font-size: 14px; color: var(--gray-400); font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .price-card ul {
+    list-style: none; text-align: left; margin-bottom: 32px;
+  }
+  .price-card li {
+    padding: 10px 0; font-size: 16px; color: var(--gray-800);
+    display: flex; align-items: flex-start; gap: 12px;
+    border-bottom: 1px solid var(--gray-100);
+    font-family: 'Inter', sans-serif; font-size: 15px;
+  }
+  .price-card li:last-child { border-bottom: none; }
+  .price-card .check {
+    flex-shrink: 0; color: var(--green); font-weight: 700; font-size: 18px;
+  }
+
+  .buy-form {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  }
+  .buy-form input {
+    flex: 1; min-width: 200px;
+    padding: 14px 18px; border: 2px solid var(--gray-200);
+    border-radius: 6px; font-size: 16px; font-family: 'Inter', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  .buy-form input:focus { border-color: var(--black); }
+  .buy-form button {
+    background: var(--black); color: var(--white);
+    padding: 14px 32px; border: 2px solid var(--black);
+    border-radius: 6px; font-size: 16px; font-weight: 700;
+    cursor: pointer; font-family: 'Inter', sans-serif;
+    transition: all 0.25s;
+  }
+  .buy-form button:hover { background: var(--white); color: var(--black); }
+  .buy-form button:disabled { opacity: 0.5; cursor: wait; }
+
+  .consent-row {
+    margin-top: 14px; text-align: left;
+    font-size: 12px; color: var(--gray-400);
+    max-width: 440px; margin-left: auto; margin-right: auto;
+  }
+  .consent-row input { margin-right: 6px; vertical-align: middle; }
+  .consent-row a { color: var(--gray-500); }
+
+  .guarantee {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; color: var(--gray-400);
+    margin-top: 20px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  /* ===================== FAQ ===================== */
+  .faq { padding: 80px 24px; }
+  .faq h2 { font-size: 32px; font-weight: 800; text-align: center; margin-bottom: 48px; letter-spacing: -0.5px; }
+  .faq-list { max-width: 600px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid var(--gray-200);
+    padding: 24px 0;
+  }
+  .faq-q {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: 17px;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-q::after { content: '+'; font-size: 22px; color: var(--gray-400); transition: transform 0.2s; }
+  .faq-item.open .faq-q::after { content: '-'; }
+  .faq-a {
+    font-size: 16px; color: var(--gray-600);
+    margin-top: 12px; line-height: 1.6;
+    display: none;
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ===================== FINAL CTA ===================== */
+  .final-cta {
+    padding: 80px 24px;
+    background: var(--black);
+    text-align: center;
+    color: var(--white);
+  }
+  .final-cta h2 {
+    font-size: 36px; font-weight: 800;
+    margin-bottom: 16px; letter-spacing: -0.5px;
+  }
+  .final-cta p { color: var(--gray-400); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-white {
+    background: var(--white); color: var(--black);
+    border-color: var(--white);
+  }
+  .btn-white:hover { background: transparent; color: var(--white); }
+
+  /* ===================== PS ===================== */
+  .ps {
+    padding: 60px 24px;
+    border-top: 1px solid var(--gray-200);
+  }
+  .ps .container { max-width: 560px; }
+  .ps p { color: var(--gray-600); font-size: 17px; }
+  .ps strong { color: var(--black); }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    text-align: center; padding: 32px 24px;
+    font-size: 13px; color: var(--gray-400);
+    border-top: 1px solid var(--gray-200);
+  }
+  footer a { color: var(--gray-400); text-decoration: none; }
+  footer a:hover { color: var(--black); }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .hero { padding: 110px 20px 60px; }
+    .hero h1 { font-size: 34px; letter-spacing: -1px; }
+    .hero .subtitle { font-size: 18px; }
+    .hero .bullets { flex-direction: column; align-items: center; gap: 10px; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .author-inner { flex-direction: column; align-items: center; text-align: center; }
+    .price-card { padding: 36px 24px; }
+    .price-card .price { font-size: 48px; }
+    .buy-form { flex-direction: column; }
+    .buy-form input { min-width: auto; }
+    .social-proof .big-number { font-size: 48px; }
+    .solution h2, .pricing h2, .faq h2, .final-cta h2 { font-size: 28px; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .features-list li { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="/">MojEbook</a>
+  <div class="nav-links">
+    <a href="#o-ebooku">O ebooku</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#cennik">Cennik</a>
+    <a href="#faq">FAQ</a>
+    <a href="#cennik" class="nav-cta">Kup ebooka</a>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <span class="badge">PDF &middot; Natychmiastowy dostep &middot; Faktura VAT</span>
+  <h1>Tytul Twojego Ebooka Tutaj</h1>
+  <p class="subtitle">Jedno-dwa zdania ktore mowia czytelnikowi jaka konkretna korzysc dostanie. Nie opis — obietnica.</p>
+  <ul class="bullets">
+    <li><span class="icon">&#128214;</span> XX stron, X rozdzialow</li>
+    <li><span class="icon">&#9889;</span> Natychmiast po platnosci</li>
+    <li><span class="icon">&#128274;</span> Darmowe aktualizacje na zawsze</li>
+  </ul>
+  <a href="#cennik" class="btn">Kup za 49 PLN</a>
+  <p class="cta-sub">Jednorazowa platnosc &middot; 14 dni na zwrot &middot; faktura w zestawie</p>
+</section>
+
+<!-- ==================== PAIN POINTS ==================== -->
+<section class="pain">
+  <div class="container">
+    <h2>Brzmi znajomo?</h2>
+    <p class="lead">Opisz problemy ktore ma Twoj czytelnik. Te, ktore sprawiaja ze kiwa glowa i mysliz "to ja".</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">&#128548;</div>
+        <h3>Problem numer jeden</h3>
+        <p>Krotki opis bolu / frustracji czytelnika. Konkretny, emocjonalny.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">&#128564;</div>
+        <h3>Problem numer dwa</h3>
+        <p>Kolejny bol. Powinien brzmiec jak cos co czytelnik sam sobie mowi w glowie.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">&#128556;</div>
+        <h3>Problem numer trzy</h3>
+        <p>Jeszcze jeden. Im bardziej konkretny, tym lepiej konwertuje.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">&#128553;</div>
+        <h3>Problem numer cztery</h3>
+        <p>Ostatni bol. Zaraz pokazesz ze masz na to rozwiazanie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SOLUTION ==================== -->
+<section class="solution" id="o-ebooku">
+  <div class="container">
+    <h2>Co znajdziesz w srodku</h2>
+    <p class="lead">Ebook ktory [konkretna obietnica]. Bez lania wody — same konkrety.</p>
+    <ul class="features-list">
+      <li>
+        <span class="feature-number">1</span>
+        <div class="feature-text">
+          <h3>Rozdzial pierwszy — Tytul</h3>
+          <p>Co czytelnik sie dowie / czego sie nauczy. Jedna-dwie linie.</p>
+        </div>
+      </li>
+      <li>
+        <span class="feature-number">2</span>
+        <div class="feature-text">
+          <h3>Rozdzial drugi — Tytul</h3>
+          <p>Konkretna korzysc z tego rozdzialu.</p>
+        </div>
+      </li>
+      <li>
+        <span class="feature-number">3</span>
+        <div class="feature-text">
+          <h3>Rozdzial trzeci — Tytul</h3>
+          <p>Jeszcze jedna korzysc. Pisz o wyniku, nie o procesie.</p>
+        </div>
+      </li>
+      <li>
+        <span class="feature-number">4</span>
+        <div class="feature-text">
+          <h3>Rozdzial czwarty — Tytul</h3>
+          <p>Opis kolejnego rozdzialu.</p>
+        </div>
+      </li>
+      <li>
+        <span class="feature-number">5</span>
+        <div class="feature-text">
+          <h3>Bonusy — checklisty, szablony</h3>
+          <p>Co czytelnik dostaje ekstra. Cwiczenia, szablony, checklisty.</p>
+        </div>
+      </li>
+    </ul>
+    <div class="cta-wrap">
+      <a href="#cennik" class="btn">Chce tego ebooka</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SOCIAL PROOF BAR ==================== -->
+<section class="social-proof">
+  <div class="big-number">500+</div>
+  <div class="big-label">osob juz pobralo tego ebooka</div>
+</section>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<section class="testimonials" id="opinie">
+  <h2>Co mowia czytelnicy</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-text">"Wstaw tutaj prawdziwa opinie od czytelnika. Im bardziej konkretna, tym lepiej konwertuje."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">AK</div>
+        <div>
+          <div class="testimonial-name">Anna K.</div>
+          <div class="testimonial-role">Stanowisko / Kontekst</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-text">"Kolejna opinia. Najlepiej jesli mowi o konkretnym wyniku — co sie zmienilo po przeczytaniu."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MN</div>
+        <div>
+          <div class="testimonial-name">Marek N.</div>
+          <div class="testimonial-role">Stanowisko / Kontekst</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-text">"Trzecia opinia. Roznorodnosc jest wazna — rozne problemy, rozne osoby, te same dobre wyniki."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">KW</div>
+        <div>
+          <div class="testimonial-name">Kasia W.</div>
+          <div class="testimonial-role">Stanowisko / Kontekst</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-text">"Czwarta opinia. Screenshoty z social media sa jeszcze lepsze niz tekst — bardziej autentyczne."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">PZ</div>
+        <div>
+          <div class="testimonial-name">Piotr Z.</div>
+          <div class="testimonial-role">Stanowisko / Kontekst</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT AUTHOR ==================== -->
+<section class="author">
+  <div class="author-inner">
+    <div class="author-photo">TY</div>
+    <div class="author-text">
+      <h2>Czesc, jestem [Twoje Imie]</h2>
+      <p>Krotki bio — dlaczego napisales tego ebooka i dlaczego czytelnik powinien Ci zaufac. Nie musisz byc ekspertem z 20-letnim stazem. Wystarczy ze jestes kilka krokow dalej niz Twoj czytelnik.</p>
+      <p>Drugie zdanie. Moze Twoja historia, moze Twoje doswiadczenie, moze cos co sprawia ze jestes wiarygodny.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRICING ==================== -->
+<section class="pricing" id="cennik">
+  <h2>Jednorazowa platnosc, dozywotni dostep</h2>
+  <p class="lead">Bez subskrypcji, bez ukrytych kosztow.</p>
+
+  <div class="price-card">
+    <div class="popular-badge">Ebook PDF</div>
+    <div class="price">49 PLN</div>
+    <div class="price-sub">brutto &middot; z faktura VAT</div>
+    <ul>
+      <li><span class="check">&#10003;</span> Pelny ebook w PDF (XX stron)</li>
+      <li><span class="check">&#10003;</span> Natychmiastowy dostep po platnosci</li>
+      <li><span class="check">&#10003;</span> Faktura VAT (z NIP lub bez)</li>
+      <li><span class="check">&#10003;</span> Darmowe aktualizacje na zawsze</li>
+      <li><span class="check">&#10003;</span> 14 dni na zwrot bez pytania</li>
+    </ul>
+
+    <form class="buy-form" id="buy-form" onsubmit="buyEbook(event)">
+      <input type="email" id="buy-email" placeholder="Twoj email" required>
+      <button type="submit" id="buy-btn">KUPUJE</button>
+    </form>
+    <div class="consent-row">
+      <label>
+        <input type="checkbox" id="buy-consent" required>
+        Akceptuje <a href="/regulamin">regulamin</a> i <a href="/polityka-prywatnosci">polityke prywatnosci</a>.
+      </label>
+    </div>
+    <div class="guarantee">
+      <span>&#128274;</span> Platnosc zabezpieczona przez Stripe &middot; 14 dni gwarancji zwrotu
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section class="faq" id="faq">
+  <h2>Czesto zadawane pytania</h2>
+  <div class="faq-list">
+    <div class="faq-item open">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">W jakim formacie jest ebook?</div>
+      <div class="faq-a">PDF — otworzysz na telefonie, tablecie i komputerze. Bez DRM, bez ograniczen.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Jak szybko dostane ebooka?</div>
+      <div class="faq-a">Natychmiast po platnosci. Link do pobrania dostaniesz na maila i na stronie.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Czy dostane fakture?</div>
+      <div class="faq-a">Tak — faktura generuje sie automatycznie i przychodzi na maila. Jesli podasz NIP przy zakupie, bedzie z danymi firmy.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">A jesli mi sie nie spodoba?</div>
+      <div class="faq-a">Masz 14 dni na zwrot bez podania przyczyny. Napisz na kontakt@twojadomena.pl — oddamy pieniadze bez pytania.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Czy bede dostawal aktualizacje?</div>
+      <div class="faq-a">Tak. Kazda nowa wersja ebooka trafi do Ciebie automatycznie na maila. Bez doplat.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "W jakim formacie jest ebook?", "acceptedAnswer": { "@type": "Answer", "text": "PDF — otworzysz na telefonie, tablecie i komputerze." }},
+    { "@type": "Question", "name": "Jak szybko dostane ebooka?", "acceptedAnswer": { "@type": "Answer", "text": "Natychmiast po platnosci." }},
+    { "@type": "Question", "name": "Czy dostane fakture?", "acceptedAnswer": { "@type": "Answer", "text": "Tak — faktura generuje sie automatycznie." }},
+    { "@type": "Question", "name": "A jesli mi sie nie spodoba?", "acceptedAnswer": { "@type": "Answer", "text": "14 dni na zwrot bez podania przyczyny." }}
+  ]
+}
+</script>
+
+<!-- ==================== FINAL CTA ==================== -->
+<section class="final-cta">
+  <h2>Gotowy?</h2>
+  <p>Jednorazowa platnosc. Dozywotni dostep. 14 dni na zwrot. Zero ryzyka.</p>
+  <a href="#cennik" class="btn btn-white">Kup ebooka za 49 PLN</a>
+</section>
+
+<!-- ==================== P.S. ==================== -->
+<section class="ps">
+  <div class="container">
+    <p><strong>P.S.</strong> Jesli doczytales do tego momentu i nadal sie wahasz — to wlasnie jest ten moment, w ktorym decydujesz. Mozesz zamknac te strone i wrocic do tego samego. Albo mozesz sprobowac — za 49 PLN, z gwarancja zwrotu. Najgorsze co sie stanie to odzyskasz swoje pieniadze.</p>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <p>&copy; 2026 &middot; [Twoja Firma]</p>
+  <p style="margin-top:6px;">
+    <a href="/regulamin">Regulamin</a> &middot;
+    <a href="/polityka-prywatnosci">Polityka prywatnosci</a> &middot;
+    kontakt@twojadomena.pl
+  </p>
+</footer>
+
+<script src="/cookies.js" defer></script>
+<script>
+function buyEbook(e) {
+  e.preventDefault();
+
+  var email = document.getElementById('buy-email').value.trim();
+  var consent = document.getElementById('buy-consent');
+
+  if (!consent.checked) {
+    alert('Zaakceptuj regulamin i polityke prywatnosci.');
+    return;
+  }
+
+  if (!email || !email.includes('@') || email.length < 5) {
+    alert('Podaj prawidlowy email.');
+    return;
+  }
+
+  var btn = document.getElementById('buy-btn');
+  btn.disabled = true;
+  btn.textContent = 'Przekierowuje...';
+
+  fetch('/api/pay', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert(data.error || 'Blad platnosci.');
+      btn.disabled = false;
+      btn.textContent = 'KUPUJE';
+    }
+  })
+  .catch(function() {
+    alert('Blad polaczenia. Sprobuj ponownie.');
+    btn.disabled = false;
+    btn.textContent = 'KUPUJE';
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dziekujemy
+
+Sitemap: https://twojadomena.pl/sitemap.xml

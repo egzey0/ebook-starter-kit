@@ -1,0 +1,9 @@
+{
+  "name": "ebook-starter-kit",
+  "version": "1.0.0",
+  "description": "Gotowy kit do sprzedaży ebooka: Stripe + Resend + Vercel",
+  "dependencies": {
+    "resend": "^6.9.3",
+    "stripe": "^17.7.0"
+  }
+}
