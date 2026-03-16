@@ -1,179 +1,133 @@
 # Ebook Starter Kit
 
-Gotowy kit do sprzedazy ebooka online. Stripe + Resend + Vercel. Zero frameworkow — czysty HTML + serverless API.
+**Sprzedawaj swojego ebooka online — bez wiedzy technicznej, za darmo.**
 
-**Co dostajesz:**
-- Landing page (profesjonalny sales page)
-- Platnosci Stripe Checkout (karty, BLIK, przelewy)
-- Automatyczny email z linkiem do pobrania (Resend)
-- Automatyczne faktury (Fakturownia, opcjonalnie)
-- Autouzupelnianie danych firmy z NIP (API Biala Lista)
-- Lista mailingowa (Resend Audiences)
-- Cookie consent + GA4 + Meta Pixel
-- Strona po zakupie z downloadem
-- Regulamin + Polityka prywatnosci (szablony)
-- SEO: schema markup, sitemap, robots.txt, OG tagi
-- Token-based download (zabezpieczony PDF)
-
-**Koszt utrzymania:**
-- Hosting: 0 PLN (Vercel free tier)
-- Maile: 0 PLN (Resend free, 3000/msc)
-- Stripe: 1.5% + 1 PLN za transakcje
-- Domena: ~40 PLN/rok
+Masz ebooka w PDF i chcesz go sprzedawać w internecie? Ten starter kit daje Ci gotowy sklep. Nie musisz umieć programować — wystarczy że masz [Claude Code](https://claude.ai/download) (AI, które edytuje kod za Ciebie).
 
 ---
 
-## Szybki start (15 minut)
+## Co dostajesz
 
-### 1. Sklonuj repo
+- **Profesjonalna strona sprzedażowa** — gotowa, responsywna, zoptymalizowana pod sprzedaż
+- **Płatności online** — karty, BLIK, przelewy bankowe (przez Stripe)
+- **Automatyczna wysyłka ebooka** — kupujący dostaje maila z linkiem do pobrania natychmiast po płatności
+- **Automatyczne faktury VAT** — opcjonalnie, przez Fakturownia.pl
+- **Strona "dziękujemy"** — z przyciskiem do pobrania PDF
+- **Regulamin i polityka prywatności** — gotowe szablony, wystarczy wpisać dane firmy
+- **Analityka** — Google Analytics + Meta Pixel (do reklam na FB/IG), z banerem cookies
+- **Lista mailingowa** — zbieraj emaile kupujących (przez Resend)
+- **SEO** — meta tagi, schema markup, sitemap — żeby Google Cię znalazł
+- **Zabezpieczony download** — PDF dostępny tylko dla kupujących, link wygasa po 7 dniach
+
+## Ile to kosztuje
+
+| Co | Koszt |
+|---|---|
+| Hosting strony (Vercel) | **0 PLN** |
+| Wysyłka maili (Resend) | **0 PLN** (do 3000/miesiąc) |
+| Prowizja od płatności (Stripe) | **1.5% + 1 PLN** za transakcję |
+| Domena (np. mojebook.pl) | **~40 PLN/rok** |
+
+Czyli jeśli sprzedajesz ebooka za 49 PLN, Stripe pobiera ~1.74 PLN. Reszta jest Twoja.
+
+---
+
+## Jak zacząć (nie musisz umieć programować)
+
+### Czego potrzebujesz
+
+- Ebook w formacie PDF
+- Firma (JDG lub spółka — w Polsce musisz mieć firmę żeby sprzedawać online)
+- Domena (np. mojebook.pl — kupujesz u dowolnego rejestratora za ~40 PLN/rok)
+- [Claude Code](https://claude.ai/download) — AI, które zedytuje cały kod za Ciebie
+
+### Krok 1: Pobierz ten projekt
+
+Otwórz terminal (na Windowsie: wyszukaj "Terminal" lub "PowerShell") i wpisz:
 
 ```bash
-git clone https://github.com/TWOJ-USER/ebook-starter-kit.git
+git clone https://github.com/egzey0/ebook-starter-kit.git
 cd ebook-starter-kit
 npm install
 ```
 
-### 2. Wrzuc swojego ebooka
+> **Nie masz git?** Kliknij zielony przycisk "Code" na górze tej strony → "Download ZIP" → rozpakuj.
+>
+> **Nie masz npm?** Zainstaluj [Node.js](https://nodejs.org/) (kliknij "LTS", zainstaluj, gotowe).
 
-Umiesz plik PDF w katalogu glownym jako `ebook.pdf`.
+### Krok 2: Odpal Claude Code i powiedz mu co chcesz
 
-Jesli chcesz inna nazwe pliku — zmien `PDF_FILENAME` w `api/download.js`.
-
-### 3. Skonfiguruj tokeny
-
-Skopiuj `.env.example` do `.env`:
+W terminalu, w folderze projektu, uruchom Claude Code:
 
 ```bash
-cp .env.example .env
+claude
 ```
 
-Wypelnij tokeny:
+A potem napisz mu coś w stylu:
 
-#### Stripe (wymagane)
-1. Zaloz konto na [stripe.com](https://stripe.com)
-2. Stripe Dashboard > Developers > API keys
-3. Skopiuj **Secret key** (`sk_live_...`) do `STRIPE_SECRET_KEY`
-4. Stripe Dashboard > Developers > Webhooks > Add endpoint
-   - URL: `https://twojadomena.pl/api/stripe-webhook`
-   - Events: `checkout.session.completed`
-   - Skopiuj **Signing secret** (`whsec_...`) do `STRIPE_WEBHOOK_SECRET`
+> *Cześć, chcę ustawić sklep z moim ebookiem. Mój ebook nazywa się "Jak pisać lepiej", kosztuje 49 PLN, ma 120 stron. Moja domena to jakpisac.pl, email kontakt@jakpisac.pl. Firma: Jan Kowalski, NIP 1234567890, ul. Przykładowa 1, 00-001 Warszawa.*
 
-#### Resend (wymagane)
-1. Zaloz konto na [resend.com](https://resend.com)
-2. Zweryfikuj domene (DNS records)
-3. API Keys > Create > skopiuj do `RESEND_API_KEY`
-4. Audiences > Create > skopiuj ID do `RESEND_AUDIENCE_ID` (opcjonalne)
+Claude przeczyta instrukcje z tego repo (`CLAUDE.md`) i:
+1. Dopyta o brakujące szczegóły (rozdziały, opinie, bio autora)
+2. Zedytuje wszystkie pliki za Ciebie
+3. Poda Ci listę kroków co dalej (Stripe, Resend, Vercel)
 
-#### Token Secret (wymagane)
-Wymysl losowy ciag. W terminalu:
-```bash
-openssl rand -hex 32
-```
-Wklej wynik do `TOKEN_SECRET`.
+**To wszystko.** Claude zrobi za Ciebie całą robotę techniczną.
 
-#### Fakturownia (opcjonalne)
-1. Zaloz konto na [fakturownia.pl](https://fakturownia.pl)
-2. Ustawienia > API > skopiuj token do `FAKTUROWNIA_TOKEN`
-3. Twoja subdomena (np. `mojafirma` z `mojafirma.fakturownia.pl`) do `FAKTUROWNIA_DOMAIN`
+### Krok 3: Załóż konta (darmowe)
 
-#### Analityka (opcjonalne)
-- GA4: [analytics.google.com](https://analytics.google.com) > Admin > Data Streams > Measurement ID
-- Meta Pixel: [business.facebook.com](https://business.facebook.com/events_manager) > Event Manager > Pixel ID
+Claude powie Ci dokładnie co i gdzie, ale w skrócie:
 
-Wpisz ID w `cookies.js` (linie 6-7).
+1. **[Stripe](https://stripe.com)** — tu będą wpływać pieniądze od klientów. Załóż konto, podaj dane firmy i konto bankowe.
 
-### 4. Dostosuj tresc
+2. **[Resend](https://resend.com)** — tu będą wysyłane maile z ebookiem do kupujących. Załóż konto i zweryfikuj domenę.
 
-**`index.html`** — glowna strona sprzedazowa:
-- Zmien tytul ebooka, opis, cene
-- Wypelnij sekcje: pain points, rozdzialy, opinie, o autorze, FAQ
-- Zmien `twojadomena.pl` na swoja domene
-- Zmien `kontakt@twojadomena.pl` na swoj email
+3. **[Vercel](https://vercel.com)** — tu będzie "mieszkać" Twoja strona w internecie. Połącz z GitHubem, zaimportuj repo, gotowe.
 
-**`dziekujemy.html`** — strona po zakupie:
-- Zmien `kontakt@twojadomena.pl` na swoj email
+### Krok 4: Wrzuć stronę do internetu
 
-**`api/pay.js`** — konfiguracja produktu:
-- `PRODUCT_NAME` — nazwa ebooka
-- `PRODUCT_DESCRIPTION` — opis w Stripe Checkout
-- `PRODUCT_PRICE` — cena brutto w **groszach** (4900 = 49 PLN)
-- `VAT_RATE` — stawka VAT (ebooki w PL = 5%)
+Połącz repo z Vercelem, dodaj klucze API w panelu Vercela, podepnij domenę — i Twój sklep jest live.
 
-**`api/stripe-webhook.js`** — konfiguracja emaila:
-- `PRODUCT_NAME` — nazwa w emailu
-- `FROM_EMAIL` — adres nadawcy (musi byc zweryfikowany w Resend)
-- `CONTACT_EMAIL` — email kontaktowy w stopce maila
-
-**`api/download.js`** — konfiguracja pliku:
-- `PDF_FILENAME` — nazwa pliku PDF w katalogu
-- `DOWNLOAD_FILENAME` — nazwa pliku przy pobieraniu
-
-**`regulamin.html`** + **`polityka-prywatnosci.html`**:
-- Wpisz dane firmy, adres, NIP
-
-**`sitemap.xml`** + **`robots.txt`**:
-- Zmien `twojadomena.pl` na swoja domene
-
-### 5. Deploy na Vercel
-
-```bash
-npm install -g vercel
-vercel
-```
-
-Lub: polacz repo z [vercel.com](https://vercel.com) i deploy automatyczny.
-
-**WAZNE:** Dodaj env vars w Vercel Dashboard:
-Vercel > Project > Settings > Environment Variables > dodaj wszystkie zmienne z `.env`.
-
-### 6. Podepnij domene
-
-Vercel > Project > Settings > Domains > dodaj domene.
-
-W panelu rejestratora (OVH, home.pl, etc.) dodaj:
-- Rekord A: `76.76.21.21`
-- Rekord CNAME: `cname.vercel-dns.com`
-
-### 7. Ustaw webhook Stripe
-
-Stripe Dashboard > Developers > Webhooks > Add endpoint:
-- URL: `https://twojadomena.pl/api/stripe-webhook`
-- Events: `checkout.session.completed`
-
-### 8. Testuj
-
-1. Stripe: uzyj trybu test (klucze `sk_test_...`)
-2. Karta testowa: `4242 4242 4242 4242`, dowolna data, dowolne CVC
-3. Sprawdz czy email z ebookiem dochodzi
-4. Sprawdz czy faktura sie tworzy (jesli skonfigurowales)
-5. Przelacz na klucze live i gotowe
+Claude poprowadzi Cię przez każdy z tych kroków.
 
 ---
 
-## Struktura plikow
+## Jak to działa (od strony kupującego)
+
+1. Klient wchodzi na Twoją stronę i klika **"Kupuję"**
+2. Wpisuje email, podaje dane płatności (karta/BLIK) na stronie Stripe
+3. Po zapłaceniu — trafia na stronę **"Dziękujemy"** z przyciskiem **"Pobierz PDF"**
+4. Jednocześnie dostaje **maila z linkiem** do pobrania (na wypadek gdyby zamknął stronę)
+5. Opcjonalnie — **faktura VAT** generuje się automatycznie i przychodzi na maila
+
+---
+
+## Struktura projektu
+
+Nie musisz tego rozumieć — Claude ogarnie. Ale jeśli jesteś ciekaw:
 
 ```
 ebook-starter-kit/
-├── index.html              <- strona sprzedazowa
-├── dziekujemy.html          <- strona po zakupie
-├── cookies.js               <- GA4 + Meta Pixel + consent
-├── ebook.pdf                <- TWOJ EBOOK (dodaj sam)
-├── regulamin.html           <- szablon regulaminu
-├── polityka-prywatnosci.html <- szablon polityki
-├── favicon.svg              <- ikona strony
-├── sitemap.xml              <- SEO
-├── robots.txt               <- SEO
-├── vercel.json              <- config Vercela
-├── package.json             <- dependencies
-├── .env.example             <- szablon env vars
-├── .gitignore
+├── index.html               ← strona sprzedażowa (to widzi klient)
+├── dziekujemy.html           ← strona po zakupie (pobieranie PDF)
+├── cookies.js                ← analityka + baner cookies
+├── ebook.pdf                 ← TWÓJ EBOOK (dodaj sam)
+├── regulamin.html            ← regulamin sklepu
+├── polityka-prywatnosci.html ← polityka prywatności
+├── favicon.svg               ← ikonka w przeglądarce
+├── sitemap.xml               ← mapa strony dla Google
+├── robots.txt                ← instrukcje dla Google
+├── vercel.json               ← konfiguracja hostingu
+├── package.json              ← lista używanych bibliotek
+├── .env.example              ← szablon konfiguracji (klucze API)
+├── CLAUDE.md                 ← instrukcje dla Claude Code
 ├── api/
-│   ├── pay.js               <- tworzy sesje Stripe Checkout
-│   ├── stripe-webhook.js    <- obsluga po platnosci (email + faktura)
-│   ├── download.js          <- serwuje PDF po weryfikacji tokena
-│   ├── verify-token.js      <- weryfikacja tokena (dla strony dziekujemy)
-│   └── subscribe.js         <- zapis na liste mailingowa
-└── README.md
+│   ├── pay.js                ← obsługa płatności
+│   ├── stripe-webhook.js     ← wysyłka maila + faktury po zakupie
+│   ├── download.js           ← serwowanie pliku PDF
+│   ├── verify-token.js       ← weryfikacja linku do pobrania
+│   └── subscribe.js          ← zapis na listę mailingową
+└── README.md                 ← ten plik
 ```
 
 ---
@@ -181,16 +135,26 @@ ebook-starter-kit/
 ## FAQ
 
 **Ile to kosztuje?**
-Hosting i maile za darmo. Placisz tylko prowizje Stripe (1.5% + 1 PLN) i domene (~40 PLN/rok).
+Hosting i maile za darmo. Płacisz tylko prowizję Stripe (1.5% + 1 PLN za transakcję) i domenę (~40 PLN/rok).
 
-**Czy musze miec firme?**
-Do sprzedazy online w PL potrzebujesz JDG lub spolki. Jesli masz <18 lat — rodzic moze zalozyc JDG.
+**Czy muszę umieć programować?**
+Nie. Claude Code zedytuje cały kod za Ciebie. Ty tylko podajesz informacje o swoim ebooku.
 
-**Czy moge zmienic design?**
-Tak — to czysty HTML + CSS. Zmieniaj co chcesz.
+**Czy muszę mieć firmę?**
+Tak — do sprzedaży online w Polsce potrzebujesz JDG lub spółki.
 
-**Czy moge sprzedawac w innej walucie?**
-Tak — zmien `PRODUCT_CURRENCY` w `api/pay.js` i ceny w HTML.
+**Czy mogę zmienić wygląd strony?**
+Tak — powiedz Claude'owi jak ma wyglądać Twoja strona, a on zmieni design. To czysty HTML + CSS, więc można zmienić wszystko.
 
-**Czy Fakturownia jest wymagana?**
-Nie — jesli nie ustawisz `FAKTUROWNIA_TOKEN`, ta czesc sie pominie. Ale jesli masz JDG, faktury sa obowiazkowe.
+**Czy mogę sprzedawać w innej walucie?**
+Tak — powiedz Claude'owi, a zmieni walutę na EUR, USD czy co chcesz.
+
+**Czy faktury są wymagane?**
+Jeśli masz firmę w Polsce — tak. Starter kit obsługuje automatyczne faktury przez Fakturownia.pl, ale to opcjonalne (możesz wystawiać faktury ręcznie).
+
+**Co jeśli coś nie działa?**
+Opisz problem Claude'owi — prawdopodobnie go naprawi. Jeśli nie, napisz issue na tym repo.
+
+---
+
+Zbudowane na: [Stripe](https://stripe.com) · [Resend](https://resend.com) · [Vercel](https://vercel.com) · [Fakturownia](https://fakturownia.pl)
