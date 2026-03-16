@@ -31,7 +31,7 @@ Użytkownik sklonował to repo i chce dostosować je do SWOJEGO ebooka. Zapytaj 
 4. **Ile ma stron** — np. 120 *(pojawi się na stronie jako informacja dla kupującego)*
 5. **Domena** — np. mojebook.pl *(adres strony w internecie, musi ją kupić osobno)*
 6. **Email kontaktowy** — np. kontakt@mojebook.pl *(do kontaktu z kupującymi)*
-7. **Dane firmy/sprzedawcy** — nazwa firmy, NIP, adres *(wymagane prawnie w regulaminie i polityce prywatności — w Polsce musisz mieć firmę żeby sprzedawać online)*
+7. **Dane sprzedawcy** — imię i nazwisko lub nazwa firmy, opcjonalnie NIP, adres *(wymagane prawnie w regulaminie i polityce prywatności — nie musi mieć firmy, może sprzedawać jako osoba prywatna w ramach NDG, ale może też mieć JDG lub spółkę)*
 8. **Imię autora** — *(pojawi się w sekcji "O autorze" na stronie)*
 
 ### Dane opcjonalne (zapytaj, ale nie wymagaj — wyjaśnij po co)

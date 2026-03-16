@@ -37,7 +37,7 @@ Czyli jeśli sprzedajesz ebooka za 49 PLN, Stripe pobiera ~1.74 PLN. Reszta jest
 ### Czego potrzebujesz
 
 - Ebook w formacie PDF
-- Firma (JDG lub spółka — w Polsce musisz mieć firmę żeby sprzedawać online)
+- Możliwość wystawiania rachunków/faktur — nie musisz mieć firmy, możesz sprzedawać jako osoba prywatna (na podstawie umowy sprzedaży), ale możesz też mieć JDG lub spółkę
 - Domena (np. mojebook.pl — kupujesz u dowolnego rejestratora za ~40 PLN/rok)
 - [Claude Code](https://claude.ai/download) — AI, które zedytuje cały kod za Ciebie
 
@@ -141,7 +141,7 @@ Hosting i maile za darmo. Płacisz tylko prowizję Stripe (1.5% + 1 PLN za trans
 Nie. Claude Code zedytuje cały kod za Ciebie. Ty tylko podajesz informacje o swoim ebooku.
 
 **Czy muszę mieć firmę?**
-Tak — do sprzedaży online w Polsce potrzebujesz JDG lub spółki.
+Nie — możesz sprzedawać jako osoba prywatna (nierejestrowana działalność gospodarcza, NDG). Możesz też mieć JDG lub spółkę. NDG nie wymaga rejestracji, ale ma limit przychodu (~75 000 PLN/rok w 2026).
 
 **Czy mogę zmienić wygląd strony?**
 Tak — powiedz Claude'owi jak ma wyglądać Twoja strona, a on zmieni design. To czysty HTML + CSS, więc można zmienić wszystko.
