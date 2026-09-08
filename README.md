@@ -1,10 +1,22 @@
-# Ebook Starter Kit
+# 📚 Ebook Starter Kit
 
 **Sprzedawaj swojego ebooka online — bez wiedzy technicznej, za darmo.**
 
 Masz ebooka w PDF i chcesz go sprzedawać w internecie? Ten starter kit daje Ci gotowy sklep. Nie musisz umieć programować — wystarczy że masz [Claude Code](https://claude.ai/download) (AI, które edytuje kod za Ciebie).
 
 ---
+
+<details>
+<summary>Spis treści / Contents</summary>
+
+- [Co dostajesz](#co-dostajesz)
+- [Ile to kosztuje](#ile-to-kosztuje)
+- [Jak zacząć (nie musisz umieć programować)](#jak-zacząć-nie-musisz-umieć-programować)
+- [Jak to działa (od strony kupującego)](#jak-to-działa-od-strony-kupującego)
+- [Struktura projektu](#struktura-projektu)
+- [FAQ](#faq)
+
+</details>
 
 ## Co dostajesz
 
